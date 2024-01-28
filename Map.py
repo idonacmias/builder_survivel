@@ -1,5 +1,5 @@
 import pygame
-from Tree import Tree, Stone, CollidieingError
+from Sprites import Tree, Stone, CollidieingError
 from random import randrange
 
 class Map:
@@ -13,10 +13,11 @@ class Map:
         number_of_trees = 5
         for i in range(number_of_trees):
             first_tree = Tree.create_image('tree1')
+            width, hight = first_tree.get_size()    
             while True:
                 try:
-                    x = randrange(1500)   
-                    y = randrange(1100)
+                    x = randrange((self.game.EDGE_x - width))   
+                    y = randrange((self.game.EDGE_y - hight))
                     tree = Tree(self.game, x, y, first_tree.copy(),
                                 self.game.solid_objects, 
                                 self.game.all_sprite, 

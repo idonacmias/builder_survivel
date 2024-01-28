@@ -2,6 +2,7 @@ import pygame
 import sys
 from Player import Player
 from Map import Map
+from Inventory import Inventory
 
 class Game:
     """
@@ -11,11 +12,16 @@ class Game:
 
     def __init__(self):
         self.screen = pygame.display.set_mode()
+        self.EDGE_x = 1900
+        self.EDGE_y = 1125
         self.all_sprite = pygame.sprite.Group()
         self.solid_objects = pygame.sprite.Group()
         self.resorce_objects = pygame.sprite.Group()
+        self.inventory = pygame.sprite.Group()
         self.map = Map(self)
         self.player = Player(self, self.all_sprite)
+        self.inventory = Inventory(self)
+
         self.is_runing = True
 
 
@@ -31,13 +37,15 @@ class Game:
 
 
     def update(self):
-        self.player.update()
+        keys = pygame.key.get_pressed()
+        self.player.update(keys)
+        self.inventory.update(keys)
 
     def draw(self):
         self.screen.fill('blue')
         self.all_sprite.draw(self.screen)
+        if self.inventory.hide: self.inventory.cells.draw(self.screen)
         pygame.display.update()
-
 
 
 if __name__ == '__main__':
