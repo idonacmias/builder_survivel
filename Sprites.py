@@ -39,22 +39,5 @@ class Stone(MySprite):
     """docstring for Stone"""
     def __init__(self, *arg):
         super().__init__(*arg)
-        
-# class Stone(pygame.sprite.Sprite):
-#     """docstring for Stone"""
-
-#     def __init__(self, game, image, x, y, *arg):
-#         super().__init__(arg)
-#         self.game = game
-#         self.image = image
-#         self.rect = self.image.get_rect()
-#         self.rect.move_ip(x, y)
-
-
-#     @classmethod
-#     def create_image(cls):
-#         return pygame.image.load('assets/stone.jpg')
-         
-
 
 
