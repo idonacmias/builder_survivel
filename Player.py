@@ -9,9 +9,6 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, game, *arg):
         super().__init__(arg)
         self.game = game
-        self.x = 100
-        self.y = 200
-        self.radius_rect = 20
         self.interactive_radius = 35
         self.speed = 3
 
@@ -69,6 +66,5 @@ class Player(pygame.sprite.Sprite):
     def display_inventory(self, keys):
         if keys[pygame.K_e]:
             print(self.inventory)
+            
 
-
-    

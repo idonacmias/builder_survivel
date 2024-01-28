@@ -14,8 +14,8 @@ class Game:
         self.all_sprite = pygame.sprite.Group()
         self.solid_objects = pygame.sprite.Group()
         self.resorce_objects = pygame.sprite.Group()
-        self.player = Player(self, self.all_sprite)
         self.map = Map(self)
+        self.player = Player(self, self.all_sprite)
         self.is_runing = True
 
 
