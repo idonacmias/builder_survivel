@@ -17,7 +17,7 @@ class Game:
         self.all_sprite = pygame.sprite.Group()
         self.solid_objects = pygame.sprite.Group()
         self.resorce_objects = pygame.sprite.Group()
-        self.inventory = pygame.sprite.Group()
+        self.inventory_items = pygame.sprite.Group()
         self.map = Map(self)
         self.player = Player(self, self.all_sprite)
         self.inventory = Inventory(self)

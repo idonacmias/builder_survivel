@@ -2,13 +2,11 @@ import pygame
 
 
 class CollidieingError(Exception):
-    """docstring for CollidieingError"""
     pass
 
 
 
-class MySprite(pygame.sprite.Sprite):
-    """docstring for MySprite"""
+class BaseSprite(pygame.sprite.Sprite):
     def __init__(self, game, x, y, image, *arg):
         super().__init__(*arg)
         self.game = game
@@ -16,6 +14,19 @@ class MySprite(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.move_ip(x, y)
 
+        
+    @classmethod
+    def create_image(cls, image_path):
+        return pygame.image.load(f'assets/{image_path}.jpg')
+         
+
+class Resorce(BaseSprite):
+    def __init__(self, *arg):
+        super().__init__(*arg)
+        self.max_stack = 2
+        self.start_colision_chack()
+
+    def start_colision_chack(self):
         if self.is_collide_with_objects(self.game.solid_objects):
             self.kill()
             raise CollidieingError()
@@ -25,18 +36,12 @@ class MySprite(pygame.sprite.Sprite):
         if len(spritecolide) > 1 and self in group:
             return True
 
-    @classmethod
-    def create_image(cls, image_path):
-        return pygame.image.load(f'assets/{image_path}.jpg')
-         
 
-
-class Tree(MySprite):
+class Tree(Resorce):
     def __init__(self, *arg):
         super().__init__(*arg)
 
-class Stone(MySprite):
-    """docstring for Stone"""
+class Stone(Resorce):
     def __init__(self, *arg):
         super().__init__(*arg)
 

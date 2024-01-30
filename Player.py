@@ -46,8 +46,9 @@ class Player(pygame.sprite.Sprite):
             self.rect.scale_by_ip(self.interactive_radius)
             if pygame.sprite.spritecollide(self, clicked_sprites, False):
                 clicked_sprite = clicked_sprites[0]
-                clicked_sprite.kill() # this will remove the sprite from all grupes! 
-                self.game.inventory.add(clicked_sprite)
+                if self.game.inventory.add(clicked_sprite):
+                    clicked_sprite.remove(self.game.resorce_objects)
+                    clicked_sprite.remove(self.game.all_sprite)
             
             self.rect.scale_by_ip(1/self.interactive_radius)    
 
